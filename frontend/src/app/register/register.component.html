@@ -1,1 +1,97 @@
-<p>register works!</p>
+<div class="registerform">
+  <mat-card>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input type="text" matInput formControlName="name" />
+            </mat-form-field>
+            <mat-error
+              *ngIf="
+                registerForm.controls['name'].invalid &&
+                (registerForm.controls['name'].dirty ||
+                  registerForm.controls['name'].touched)
+              "
+            >
+              <span *ngIf="registerForm.controls['name'].errors?.['required']"
+                >Name is required</span
+              >
+              <span *ngIf="registerForm.controls['name'].errors?.['maxLength']"
+                >Name is too Long</span
+              >
+            </mat-error>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                formControlName="email"
+                placeholder="Ex. pat@example.com"
+              />
+            </mat-form-field>
+            <mat-error
+              *ngIf="
+                registerForm.controls['email'].invalid &&
+                (registerForm.controls['email'].dirty ||
+                  registerForm.controls['email'].touched)
+              "
+            >
+              <span *ngIf="registerForm.controls['email'].errors?.['required']"
+                >Email is required</span
+              >
+              <span *ngIf="registerForm.controls['email'].errors?.['email']"
+                >Invalid Email</span
+              >
+            </mat-error>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Phone</mat-label>
+              <input type="text" matInput formControlName="phone" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input type="password" matInput formControlName="password" />
+            </mat-form-field>
+            <mat-error
+              *ngIf="
+                registerForm.controls['password'].invalid &&
+                (registerForm.controls['password'].dirty ||
+                  registerForm.controls['password'].touched)
+              "
+            >
+              <span *ngIf="registerForm.controls['password'].errors?.['required']"
+                >Password is required</span
+              >
+            </mat-error>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
