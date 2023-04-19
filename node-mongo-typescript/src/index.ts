@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import authRoute from './routes/authRoute'
 import bodyParser from 'body-parser'
+import cors from 'cors';
 dotenv.config()
 
 const app = express()
@@ -13,6 +14,7 @@ mongoose.connect(`${process.env.DATABASE_URL}${process.env.DATABASE}`)
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.listen(process.env.PORT || 8080, () => console.log("Server run on port 8080"))
 
